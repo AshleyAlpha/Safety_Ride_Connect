@@ -79,7 +79,7 @@ function Login() {
           Forgot password? <NavLink to="/reset" className="text-black">Reset</NavLink>
         </p>
         <p className="text-center text-sm text-gray-500">
-          Change password <NavLink className="text-black">Change</NavLink>
+          Change password <NavLink to="/Update" className="text-black">Change</NavLink>
         </p>
       </form>
     </div>
