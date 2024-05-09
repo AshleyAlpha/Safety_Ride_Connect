@@ -48,7 +48,7 @@ function ResetPassword() {
                 className={`w-full rounded-lg border-gray-200 bg-cyan-200 p-4 text-black text-sm shadow-sm  ${errors.email ? 'border-red-500' : ''}`}
                 placeholder="Email"
               />
-              {errors.email && <p className="text-sm mt-1">{errors.email}</p>}
+              {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
             </div>
 
             <button

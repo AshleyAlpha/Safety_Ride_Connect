@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // State variables for form data and errors
   const [formData, setFormData] = useState({
@@ -25,22 +25,30 @@ const SignUp = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Additional validation
-    if (!isValidEmail(formData.email)) {
-      setErrors({ ...errors, email: 'Please enter a valid email address.' });
-      return;
-    }
+  // Additional validation
+  if (!isValidEmail(formData.email)) {
+    setErrors({ ...errors, email: 'Please enter a valid email address.' });
+    return;
+  }
 
-    if (!isValidPassword(formData.password)) {
-      setErrors({ ...errors, password: 'Your password is not strong.' });
-      return;
-    }
+  if (!formData.password.trim()) {
+    setErrors({ ...errors, password: 'Password is required' });
+    return;
+  } else if (formData.password.length < 8) {
+    setErrors({ ...errors, password: 'Password must be at least 8 characters' });
+    return;
+  }
 
-    console.log('Form submitted:', formData);
-    navigate(`/home`);
-  };
+  if (!formData.username.trim()) {
+    setErrors({ ...errors, username: 'Username is required' });
+    return;
+  }
+
+  console.log('Form submitted:', formData);
+  navigate(`/OTP`);
+};
 
   // Function to check email format
   const isValidEmail = (email) => {
@@ -83,7 +91,7 @@ const SignUp = () => {
               placeholder="Email"
             
             />
-            {errors.email && <p>{errors.email}</p>}
+            {errors.email && <p class="text-red-500">{errors.email}</p>}
           </div>
           <div className="mb-4">
             <input
@@ -94,9 +102,9 @@ const SignUp = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Password"
-              required
+
             />
-            {errors.password && <p>{errors.password}</p>}
+            {errors.password && <p class="text-red-500">{errors.password}</p>}
           </div>
           <button
             className="bg-cyan-500 hover:bg-cyan-700 text-black font-italic py-2 px-4 rounded-lg w-full"

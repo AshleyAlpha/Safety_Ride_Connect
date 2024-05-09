@@ -25,8 +25,8 @@ function Login() {
     }
     if (!password.trim()) {
       errors.password = 'Password is required';
-    } else if (password.length < 6) {
-      errors.password = 'Password must be at least 6 characters';
+    } else if (password.length < 8) {
+      errors.password = 'Password must be at least 8 characters';
     }
     setErrors(errors);
     // Submit form if no errors
@@ -47,10 +47,10 @@ function Login() {
             type="email"
             value={email}
             onChange={handleEmailChange}
-            className={`w-full rounded-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm ${errors.email ? 'border-red-500' : ''}`}
+            className={`w-full rounded-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm ${errors.email ? 'text-red-500' : ''}`}
             placeholder="Email"
           />
-          {errors.email && <p className="text-sm mt-1">{errors.email}</p>}
+          {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
         </div>
 
         <div className="mb-4">
@@ -62,7 +62,7 @@ function Login() {
             className={`w-full rounded-lg border-gray-200 p-4 bg-cyan-200 text-black text-sm shadow-sm ${errors.password ? 'border-red-500' : ''}`}
             placeholder="Password"
           />
-          {errors.password && <p className="text-sm mt-1">{errors.password}</p>}
+          {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
         </div>
 
         <button

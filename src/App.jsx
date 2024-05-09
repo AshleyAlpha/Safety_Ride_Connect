@@ -5,7 +5,7 @@ import Login from "./components/pages/Login";
 import SignUp from "./components/pages/SignUp";
 import ResetPassword from "./components/pages/Reset";
 import UpdatePassword from "./components/pages/Update";
-
+import OTP from "./components/pages/OTP";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login/>} />
         <Route path="/SignUp" element={<SignUp/>} />
+        <Route path="/OTP" element={<OTP/>} />
         <Route path="/Reset" element={<ResetPassword/>} />
         <Route path="/Update" element={<UpdatePassword/>} />
       </Routes>
