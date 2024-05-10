@@ -41,7 +41,6 @@ const OTP = () => {
         otp: formData.otp
       });
 
-      // Assuming your API responds with a success message or status
       console.log('OTP verification successful:', response.data);
 
       // Navigate to login page upon successful OTP verification
