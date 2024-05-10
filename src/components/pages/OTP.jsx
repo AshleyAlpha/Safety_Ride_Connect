@@ -27,7 +27,8 @@ const OTP = () => {
 
   const handleSubmit = async (e) => { // Modify handleSubmit to be asynchronous
     e.preventDefault();
-    // Validation check
+
+    // Validation checks
     if (formData.otp.length !== 6) {
       setErrors({
         ...errors,
