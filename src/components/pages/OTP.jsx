@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'; // Import axios for making HTTP requests
 
 const OTP = () => {
+  const navigate = useNavigate(); // Initialize navigate hook
   const [formData, setFormData] = useState({
     otp: ''
   });
@@ -22,19 +25,37 @@ const OTP = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => { // Modify handleSubmit to be asynchronous
     e.preventDefault();
-    // Here you can validate the OTP, and set errors if validation fails
-    // For example:
-    if (formData.otp.length !== 5) {
+    // Validation check
+    if (formData.otp.length !== 6) {
       setErrors({
         ...errors,
-        otp: 'OTP must be 5 characters long'
+        otp: 'OTP must be 6 characters long'
       });
       return;
     }
-    // Otherwise, proceed with the submission
-    console.log('OTP submitted:', formData.otp);
+    try {
+      // Make a POST request to your API endpoint using axios
+      const response = await axios.post('https://safety-drive-connect-backend-project-2.onrender.com/api/v1/verify', {
+        otp: formData.otp
+      });
+
+      // Assuming your API responds with a success message or status
+      console.log('OTP verification successful:', response.data);
+
+      // Navigate to login page upon successful OTP verification
+      navigate('/');
+
+    } catch (error) {
+      // If there's an error from the API
+      console.error('OTP verification failed:', error);
+      // You can set an appropriate error message for the user
+      setErrors({
+        ...errors,
+        otp: 'OTP verification failed. Please try again.'
+      });
+    }
   };
 
   return (
