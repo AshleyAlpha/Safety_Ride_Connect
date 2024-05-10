@@ -1,17 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom"
+import NavBar from "./Components/Navbar"
+import Footer from "./Components/Footer"
+import Home from "./Pages/Home"
+import About from "./Pages/About"
+import Service from "./Pages/Service"
+import Contact from "./Pages/Contact"
+import SignIn from "./Pages/SignIn"
 
-function App() {
 
-  return (
+
+const Layout = ()=>{
+
+  return(
     <>
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+     <NavBar/>
+     <Outlet/>
+     <Footer/>
     </>
   )
 }
-
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/service" element={<Service />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/signIn" element={<SignIn/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
 export default App
