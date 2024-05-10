@@ -26,10 +26,10 @@ const OTP = () => {
     e.preventDefault();
     // Here you can validate the OTP, and set errors if validation fails
     // For example:
-    if (formData.otp.length !== 6) {
+    if (formData.otp.length !== 5) {
       setErrors({
         ...errors,
-        otp: 'OTP must be 6 characters long'
+        otp: 'OTP must be 5 characters long'
       });
       return;
     }
