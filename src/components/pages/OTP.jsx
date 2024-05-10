@@ -53,7 +53,7 @@ const OTP = () => {
           {errors.otp && <p className="text-red-500">{errors.otp}</p>}
         </div>
         <button type="submit" className="w-full rounded-lg bg-cyan-700 px-5 py-3 text-sm font-medium text-black mb-4">
-          Submit
+          Verify
         </button>
       </form>
     </div>

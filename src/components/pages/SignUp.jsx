@@ -79,6 +79,7 @@ const SignUp = () => {
               placeholder="Username"
               
             />
+            {errors.username && <p class="text-red-500">{errors.username}</p>}
           </div>
           <div className="mb-4">
             <input
@@ -119,3 +120,5 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+
