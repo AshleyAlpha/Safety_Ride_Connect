@@ -1,6 +1,10 @@
+import Cards from "../Components/card"
+
 const Service = () => {
   return (
-    <div>Service</div>
+    <div>
+      <Cards/>
+    </div>
   )
 }
 export default Service
