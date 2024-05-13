@@ -81,6 +81,10 @@ function Login() {
         <p className="text-center text-sm text-gray-500">
           Change password <NavLink to="/Update" className="text-black">Change</NavLink>
         </p>
+
+        <p className="text-center text-sm text-gray-500">
+          Change password <NavLink to="/Profile" className="text-black">Profile</NavLink>
+        </p>
       </form>
     </div>
   );

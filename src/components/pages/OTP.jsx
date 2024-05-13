@@ -45,7 +45,7 @@ const OTP = () => {
       console.log('OTP verification successful:', response.data);
 
       // Navigate to login page upon successful OTP verification
-      navigate('/');
+      navigate('/Profile');
 
     } catch (error) {
       // If there's an error from the API
