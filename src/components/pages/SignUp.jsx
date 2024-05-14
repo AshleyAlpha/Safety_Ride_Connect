@@ -61,8 +61,8 @@ const SignUp = () => {
     valid = true;
   };
 
-  const handleSignUp = () => {
-    axios({
+  const handleSignUp = async() => {
+    await axios({
       method: "POST",
       url: "https://safety-drive-connect-backend-project-2.onrender.com/api/v1/signup",
       headers: {
@@ -79,7 +79,7 @@ const SignUp = () => {
       // localStorage.setItem("storeToken", response.data)
       setTimeout(() => {
         navigate('/OTP')
-      }, 3000); //
+      }, 2000); //
     }).catch((error)=>{
       console.error(error);
     })

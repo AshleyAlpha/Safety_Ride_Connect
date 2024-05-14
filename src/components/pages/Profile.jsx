@@ -5,8 +5,8 @@ function ProfileForm() {
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [gender, setGender] = useState('');
+  const [languagesSpoken, setLanguagesSpoken] = useState('');
   const [bio, setBio] = useState('');
-  const [languagesSpoken, setLanguagesSpoken] = useState([]);
   const [hasCar, setHasCar] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -111,23 +111,56 @@ function ProfileForm() {
 
         {/* Languages Spoken */}
         <label className="block text-black">
-          Languages Spoken:
-          <select multiple value={languagesSpoken} onChange={(e) => setLanguagesSpoken(Array.from(e.target.selectedOptions, option => option.value))} className="w-full rounded-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm">
-            <option value="english">English</option>
-            <option value="spanish">Spanish</option>
-            <option value="french">French</option>
-            <option value="german">Swahili</option>
-            {/* Add more languages as needed */}
+          Spoken Languages:
+          <select value={languagesSpoken} onChange={(e) => setLanguagesSpoken(e.target.value)} className="w-full rounded-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm">
+            <option value="">Select</option>
+            <option value="male">English</option>
+            <option value="female">French</option>
+            <option value="other">Swahili</option>
+            <option value="other">Spanish</option>
           </select>
-          {errors.languagesSpoken && <p className="text-red-500">{errors.languagesSpoken}</p>}
+          {errors.gender && <p className="text-red-500">{errors.gender}</p>}
         </label>
         <br />
 
-        {/* Car Ownership */}
-        <label className="block text-black">
-          Do you own a car?
-          <input type="checkbox" checked={hasCar} onChange={(e) => setHasCar(e.target.checked)} />
-        </label>
+       
+{/* Car Ownership */}
+<div className="flex justify-center items-center mb-4">
+  <label className="block text-black mr-4">
+    Do you own a car?
+  </label>
+  <div className="flex items-center">
+    <label className="mr-4 cursor-pointer flex items-center">
+      <input
+        type="radio"
+        name="carOwnership"
+        value="yes"
+        checked={hasCar}
+        onChange={() => setHasCar(true)}
+        className="hidden"
+      />
+      <div className={`w-6 h-6 border rounded-full border-black flex items-center justify-center focus-within:border-black ${hasCar ? 'bg-cyan-700' : ''}`}>
+        <span className="sr-only">Yes</span>
+      </div>
+      <span className="ml-2 text-black">Yes</span>
+    </label>
+    <label className="cursor-pointer flex items-center">
+      <input
+        type="radio"
+        name="carOwnership"
+        value="no"
+        checked={!hasCar}
+        onChange={() => setHasCar(false)}
+        className="hidden"
+      />
+      <div className={`w-6 h-6 border rounded-full border-black flex items-center justify-center focus-within:border-black ${!hasCar ? 'bg-cyan-700' : ''}`}>
+        <span className="sr-only">No</span>
+      </div>
+      <span className="ml-2 text-black">No</span>
+    </label>
+  </div>
+</div>
+
         <br />
 
         {/* Submit Button */}
