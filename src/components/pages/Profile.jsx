@@ -63,6 +63,9 @@ function ProfileForm() {
 
   return (
     <div className="flex justify-center bg-cyan-700 p-36">
+      <div>
+      <h1 className="text-center text-2xl mb-32 complete-profile hover:shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Complete Profile</h1>
+      
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-8 w-full px-6 py-8 mt-10 mb-11 bg-cyan-300 rounded-lg shadow-lg">
         <div>
           {/* Profile Picture */}
@@ -187,10 +190,12 @@ function ProfileForm() {
             </div>
           </div>
         </div>
+        
 
         {/* Submit Button */}
         <button type="submit" className="col-span-2 w-full rounded-lg bg-cyan-500 px-5 py-3 text-sm font-medium text-black mb-4">Submit</button>
       </form>
+    </div>
     </div>
   );
 }
