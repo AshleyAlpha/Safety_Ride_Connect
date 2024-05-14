@@ -64,7 +64,7 @@ function ProfileForm() {
   return (
     <div className="flex justify-center bg-cyan-700 p-36">
       <div>
-      <h1 className="text-center text-2xl mb-32 complete-profile hover:shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Complete Profile</h1>
+      <h1 className="text-center text-2xl mb-32" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', padding: '10px', borderRadius: '8px' }}>Complete Profile</h1>
       
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-8 w-full px-6 py-8 mt-10 mb-11 bg-cyan-300 rounded-lg shadow-lg">
         <div>
