@@ -9,7 +9,7 @@ function ProfileForm() {
   const [bio, setBio] = useState('');
   const [drivingLicenseCategory, setDrivingLicenseCategory] = useState('');
   const [drivingLicensePicture, setDrivingLicensePicture] = useState('');
-  const [hasCar, setHasCar] = useState(false);
+  const [hasCar, setHasCar] = useState(null);
   const [costPerHour, setCostPerHour] = useState('');
   const [errors, setErrors] = useState({});
 
@@ -28,16 +28,21 @@ function ProfileForm() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault();                                              
     let errors = {};
     
     // Validation checks
     if (!profilePicture) {
       errors.profilePicture = "Profile picture is required";
     }
+    
     if (!address) {
       errors.address = "Address is required";
     }
+    if (!costPerHour) {
+      errors.costPerHour = "Please Enter Cost Per Hour";
+    }
+
     if (!phoneNumber) {
       errors.phoneNumber = "Phone number is required";
     } else if (!validatePhoneNumber(phoneNumber)) {
@@ -51,25 +56,42 @@ function ProfileForm() {
     if (!bio) {
       errors.bio = "Bio is required";
     }
-    if (languagesSpoken.length === 0) {
-      errors.languagesSpoken = "At least one language must be selected";
+
+    if (!drivingLicenseCategory) {
+      errors.drivingLicenseCategory = "Driving License Category is required";
     }
+
+    if (!drivingLicensePicture) {
+      errors.drivingLicensePicture = "Driving License Picture is required";
+    }
+
+    if (languagesSpoken.length === 0) {
+      errors.languagesSpoken = "At least one language must be selected";                
+    }
+
+    if (!hasCar) {
+      errors.hasCar = "Please select an option";
+    } 
 
     if (Object.keys(errors).length === 0) {
       // Form submission logic here
       console.log("Form submitted with data:", {
         profilePicture,
         address,
+        costPerHour,
         phoneNumber,
         gender,
         bio,
+        drivingLicenseCategory,
+        drivingLicensePicture,
         languagesSpoken,
-        hasCar
+        hasCar,
       });
     } else {
       // Update errors state with validation errors
       setErrors(errors);
     }
+    
   };
 
   return (
@@ -218,6 +240,7 @@ function ProfileForm() {
               </label>
             </div>
           </div>
+          {errors.hasCar && <p className="text-red-500">{errors.hasCar}</p>}
         </div>
         
 
