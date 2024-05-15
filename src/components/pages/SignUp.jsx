@@ -10,9 +10,7 @@ const SignUp = () => {
     return emailRegex.test(email);
   };
 
-  // Function to check if the password is strong
   const isStrongPassword = (password) => {
-    // Password should be at least 8 characters long and should contain at least one uppercase letter, one lowercase letter, one number, and one special character
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
@@ -24,6 +22,7 @@ const SignUp = () => {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [role, setRole] = useState(""); // New state for role
 
   const isValid = (e) => {
     e.preventDefault();
@@ -58,62 +57,31 @@ const SignUp = () => {
       setPasswordError("");
     }
 
-    valid = true;
+    return valid;
   };
 
-  const handleSignUp = async() => {
-    await axios({
-      method: "POST",
-      url: "https://safety-drive-connect-backend-project-2.onrender.com/api/v1/signup",
-      headers: {
-      "Content-Type": "application/json",
-      //   // Authorization:'Bearer  ...'
-      },
-      data: {
-        userName: userName,
-        email: email,
-        password: password,
-      },
-    }).then((response) => {
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    if (!isValid(e)) return; // Validate form fields
+
+    try {
+      const response = await axios.post(
+        "https://safety-drive-connect-backend-project-2.onrender.com/api/v1/signup",
+        {
+          userName: userName,
+          email: email,
+          password: password,
+          role: role // Include selected role in the signup data
+        }
+      );
       console.log(response);
-      // localStorage.setItem("storeToken", response.data)
       setTimeout(() => {
         navigate('/OTP')
-      }, 2000); //
-    }).catch((error)=>{
+      }, 2000);
+    } catch (error) {
       console.error(error);
-    })
+    }
   };
-  // const signUp = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       "https://safety-drive-connect-backend-project-2.onrender.com/api/v1/signup",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           username: userName,
-  //           email: email,
-  //           password: password,
-  //         }),
-  //       }
-  //     );
-  //     console.log("Response:", response);
-
-  //     if (response.ok) {
-  //       // If signup successful, navigate to OTP page
-  //       navigate("/OTP");
-  //     } else {
-  //       // Handle signup error
-  //       // Maybe show a message to the user
-  //       console.error("Signup failed");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error during signup:", error);
-  //   }
-  // };
 
   return (
     <div className="bg-cyan-700 border-black min-h-screen flex justify-center items-center p-36">
@@ -155,6 +123,18 @@ const SignUp = () => {
               placeholder="Password"
             />
             {passwordError && <p className="text-red-500">{passwordError}</p>}
+          </div>
+          {/* New select input for role */}
+          <div className="mb-4">
+            <select
+              className="border-2 rounded-lg px-4 py-2 text-black w-full bg-cyan-200"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <option value="">Select Role</option>
+              <option value="customer">Customer</option>
+              <option value="driver">Driver</option>
+            </select>
           </div>
           <button
             className="bg-cyan-500 hover:bg-cyan-700 text-black font-italic py-2 px-4 rounded-lg w-full"
