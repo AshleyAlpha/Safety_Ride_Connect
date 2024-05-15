@@ -16,10 +16,14 @@ function ProfileForm() {
   const validatePhoneNumber = (value) => {
     return /^\d+$/.test(value); // Check if value contains only numbers
   };
+  const validateCostPerHour = (value) => {
+    return /^\d*\.?\d{0,2}$/.test(value); // Check if value is a valid number with up to two decimal places
+  };
+  
 
   const handlePhoneNumberChange = (e) => {
     const value = e.target.value;
-    if (value.length <= 12) {
+    if (value.length <= 13) {
       setPhoneNumber(value);
       setErrors((prevErrors) => ({ ...prevErrors, phoneNumber: '' }));
     } else {
@@ -93,6 +97,14 @@ function ProfileForm() {
     }
     
   };
+  const handleLanguageChange = (e) => {
+    const value = e.target.value;
+    if (e.target.checked) {
+      setLanguagesSpoken((prevLanguages) => [...prevLanguages, value]);
+    } else {
+      setLanguagesSpoken((prevLanguages) => prevLanguages.filter((lang) => lang !== value));
+    }
+  };
 
   return (
     <div className="flex justify-center bg-cyan-700 p-36">
@@ -122,7 +134,7 @@ function ProfileForm() {
               Cost per Hour:
               <div className="flex items-center">
                 <span className="bg-cyan-200 text-black p-4 text-sm rounded-l-lg border-gray-200 shadow-sm">$</span>
-                <input type="text" value={costPerHour} onChange={(e) => validateCostPerHour(e.target.value) && setCostPerHour(e.target.value)} className="w-full rounded-r-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm" placeholder="Enter amount" />
+                <input type="text" value={costPerHour} onChange={(e) => validateCostPerHour(e.target.value) && setCostPerHour(e.target.value)} className="w-full rounded-r-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm" placeholder="Enter amount in Dollars" />
               </div>
               {errors.costPerHour && <p className="text-red-500">{errors.costPerHour}</p>}
             </label>
@@ -135,7 +147,7 @@ function ProfileForm() {
         type="text"
         value={phoneNumber}
         onChange={handlePhoneNumberChange}
-        pattern="\d{0,12}"
+        pattern="\d{0,13}"
         className="w-full rounded-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm"
         placeholder="Phone Number (e.g., +250782387280)"
       />
@@ -192,16 +204,51 @@ function ProfileForm() {
 
           {/* Languages Spoken */}
           <label className="block text-black">
-            Spoken Languages:
-            <select value={languagesSpoken} onChange={(e) => setLanguagesSpoken(e.target.value)} className="w-full rounded-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm">
-              <option value="">Select</option>
-              <option value="male">English</option>
-              <option value="female">French</option>
-              <option value="other">Swahili</option>
-              <option value="other">Kinyarwanda</option>
-            </select>
-            {errors.languagesSpoken && <p className="text-red-500">{errors.languagesSpoken}</p>}
-          </label>
+          Spoken Languages:
+          <div>
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                value="English"
+                checked={languagesSpoken.includes("English")}
+                onChange={handleLanguageChange}
+                className="form-checkbox h-5 w-5 text-black"
+              />
+              <span className="ml-2">English</span>
+            </label>
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                value="French"
+                checked={languagesSpoken.includes("French")}
+                onChange={handleLanguageChange}
+                className="form-checkbox h-5 w-5 text-black"
+              />
+              <span className="ml-2">French</span>
+            </label>
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                value="Swahili"
+                checked={languagesSpoken.includes("Swahili")}
+                onChange={handleLanguageChange}
+                className="form-checkbox h-5 w-5 text-black"
+              />
+              <span className="ml-2">Swahili</span>
+            </label>
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                value="Kinyarwanda"
+                checked={languagesSpoken.includes("Kinyarwanda")}
+                onChange={handleLanguageChange}
+                className="form-checkbox h-5 w-5 text-black"
+              />
+              <span className="ml-2">Kinyarwanda</span>
+            </label>
+          </div>
+          {errors.languagesSpoken && <p className="text-red-500">{errors.languagesSpoken}</p>}
+        </label>
           <br />
 
           {/* Car Ownership */}
@@ -215,7 +262,8 @@ function ProfileForm() {
                   type="radio"
                   name="carOwnership"
                   value="yes"
-                  checked={hasCar}
+                  checked={hasCar === true}
+                  
                   onChange={() => setHasCar(true)}
                   className="hidden"
                 />
@@ -229,7 +277,7 @@ function ProfileForm() {
                   type="radio"
                   name="carOwnership"
                   value="no"
-                  checked={!hasCar}
+                  checked={hasCar === false}
                   onChange={() => setHasCar(false)}
                   className="hidden"
                 />
