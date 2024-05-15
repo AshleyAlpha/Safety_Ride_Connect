@@ -22,7 +22,8 @@ const SignUp = () => {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [role, setRole] = useState(""); // New state for role
+  const [role, setRole] = useState("");
+  const [roleError, setRoleError] = useState("");
 
   const isValid = (e) => {
     e.preventDefault();
@@ -55,6 +56,13 @@ const SignUp = () => {
       valid = false;
     } else {
       setPasswordError("");
+    }
+
+    if (!role.trim()) {
+      setRoleError("Please Select a Role");
+      valid = false;
+    } else {
+      setRoleError("");
     }
 
     return valid;
@@ -124,6 +132,7 @@ const SignUp = () => {
             />
             {passwordError && <p className="text-red-500">{passwordError}</p>}
           </div>
+
           {/* New select input for role */}
           <div className="mb-4">
             <select
@@ -135,6 +144,7 @@ const SignUp = () => {
               <option value="customer">Customer</option>
               <option value="driver">Driver</option>
             </select>
+            {roleError && <p className="text-red-500">{roleError}</p>}
           </div>
           <button
             className="bg-cyan-500 hover:bg-cyan-700 text-black font-italic py-2 px-4 rounded-lg w-full"
