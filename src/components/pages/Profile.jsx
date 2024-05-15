@@ -17,6 +17,16 @@ function ProfileForm() {
     return /^\d+$/.test(value); // Check if value contains only numbers
   };
 
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+    if (value.length <= 12) {
+      setPhoneNumber(value);
+      setErrors((prevErrors) => ({ ...prevErrors, phoneNumber: '' }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, phoneNumber: 'Phone number cannot exceed 12 characters.' }));
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let errors = {};
@@ -98,10 +108,17 @@ function ProfileForm() {
 
           {/* Phone Number */}
           <label className="block text-black">
-            Phone Number:
-            <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className="w-full rounded-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm" placeholder="Phone Number (e.g., +250782387280)" />
-            {errors.phoneNumber && <p className="text-red-500">{errors.phoneNumber}</p>}
-          </label>
+      Phone Number:
+      <input
+        type="text"
+        value={phoneNumber}
+        onChange={handlePhoneNumberChange}
+        pattern="\d{0,12}"
+        className="w-full rounded-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm"
+        placeholder="Phone Number (e.g., +250782387280)"
+      />
+      {errors.phoneNumber && <p className="text-red-500">{errors.phoneNumber}</p>}
+    </label>
           <br />
 
           {/* Gender */}
