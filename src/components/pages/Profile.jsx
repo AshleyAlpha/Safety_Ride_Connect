@@ -10,6 +10,7 @@ function ProfileForm() {
   const [drivingLicenseCategory, setDrivingLicenseCategory] = useState('');
   const [drivingLicensePicture, setDrivingLicensePicture] = useState('');
   const [hasCar, setHasCar] = useState(false);
+  const [costPerHour, setCostPerHour] = useState('');
   const [errors, setErrors] = useState({});
 
   const validatePhoneNumber = (value) => {
@@ -83,6 +84,17 @@ function ProfileForm() {
             {errors.address && <p className="text-red-500">{errors.address}</p>}
           </label>
           <br />
+
+          {/* Cost Per Hour */}
+          <label className="block text-black">
+              Cost per Hour:
+              <div className="flex items-center">
+                <span className="bg-cyan-200 text-black p-4 text-sm rounded-l-lg border-gray-200 shadow-sm">$</span>
+                <input type="text" value={costPerHour} onChange={(e) => validateCostPerHour(e.target.value) && setCostPerHour(e.target.value)} className="w-full rounded-r-lg border-gray-200 bg-cyan-200 text-black p-4 text-sm shadow-sm" placeholder="Enter amount" />
+              </div>
+              {errors.costPerHour && <p className="text-red-500">{errors.costPerHour}</p>}
+            </label>
+            <br />
 
           {/* Phone Number */}
           <label className="block text-black">
