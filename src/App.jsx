@@ -6,6 +6,7 @@ import About from "./Pages/About"
 import Service from "./Pages/Service"
 import Contact from "./Pages/Contact"
 import SignIn from "./Pages/SignIn"
+import Profile1 from "./Pages/Profile1"
 
 
 
@@ -22,6 +23,7 @@ const Layout = ()=>{
 function App() {
   return (
     <BrowserRouter>
+    {/* <Profile1/> */}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
