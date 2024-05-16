@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+// import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/pages/Login";
 import SignUp from "./components/pages/SignUp";
@@ -7,13 +7,17 @@ import ResetPassword from "./components/pages/Reset";
 import UpdatePassword from "./components/pages/Update";
 import OTP from "./components/pages/OTP";
 import ProfileForm from "./components/pages/Profile";
-import Content from "./Dashboard/Dashboard";
 import Layout from "./Dashboard/Layout";
 import Services from "./Dashboard/Services";
 import Dashboard from "./Dashboard/Dashboard";
+import Testimonials from "./Dashboard/Testimonials";
+import Transactions from "./Dashboard/Transactions";
+import Users from "./Dashboard/Users";
+import Settings from "./Dashboard/Settings";
+
 function App() {
   return (
-    <div>
+    <div className="w-full">
       {/* <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login/>} />
@@ -29,9 +33,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Content />} />
-            <Route path="/Services" element={<Services />} />
             <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/Services" element={<Services />} />
+            <Route path="/Testimonials" element={<Testimonials />} />
+            <Route path="/Transactions" element={<Transactions />} />
+            <Route path="/Users" element={<Users />} />
+            <Route path="/Settings" element={<Settings />} />
           </Route>
         </Routes>
       </BrowserRouter>
