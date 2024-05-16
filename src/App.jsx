@@ -18,6 +18,15 @@ function App() {
         <Route path="/Profile" element={<ProfileForm/>} />
         <Route path="/Reset" element={<ResetPassword/>} />
         <Route path="/Update" element={<UpdatePassword/>} />
+
+
+          {/* DASHBOARD */}
+          <Route path="/" element={<Layout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Route>
+       
       </Routes>
     </BrowserRouter>
     </div>
