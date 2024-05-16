@@ -8,11 +8,11 @@ const SideBar = () => {
         <Link to="/" className="text-cyan-100">
           Home
         </Link>
-        <Link to="/about " className="text-cyan-100">
-          About Us
+        <Link to="/Services" className="text-cyan-100">
+        Services 
         </Link>
-        <Link to="/contact" className="text-cyan-100">
-          Contact
+        <Link to="/Dashboard" className="text-cyan-100">
+          Dashboard
         </Link>
       </div>
       <div className=""></div>
