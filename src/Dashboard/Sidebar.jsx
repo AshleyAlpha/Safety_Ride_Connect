@@ -4,6 +4,8 @@ import { FiSettings } from "react-icons/fi";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { FaServicestack } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa6";
+import { AiOutlineTransaction } from "react-icons/ai";
+import { BiMessageDetail } from "react-icons/bi";
 
 const SideBar = () => {
   return (
@@ -18,10 +20,12 @@ const SideBar = () => {
         <AiOutlineDashboard className="mr-2"/>
           Dashboard
         </Link>
-        <Link to="/Testimonials" className="text-green-700">
+        <Link to="/Testimonials" className="text-green-700 flex items-center">
+        <BiMessageDetail  className="mr-2"/>
           Testimonials
         </Link>
-        <Link to="/Transactions" className="text-green-700">
+        <Link to="/Transactions" className="text-green-700 flex items-center">
+        <AiOutlineTransaction className="mr-2"/>
           Transactions
         </Link>
         <Link to="/Users" className="text-green-700 flex items-center">

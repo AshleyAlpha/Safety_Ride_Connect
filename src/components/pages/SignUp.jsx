@@ -145,7 +145,7 @@ const SignUp = () => {
               <option value="driver">Driver</option>
             </select>
             {roleError && <p className="text-red-500">{roleError}</p>}
-          </div>
+          </div> 
           <button
             className="bg-cyan-500 hover:bg-cyan-700 text-black font-italic py-2 px-4 rounded-lg w-full"
             type="submit"
