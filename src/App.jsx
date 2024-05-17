@@ -13,7 +13,10 @@ import Dashboard from "./Dashboard/Dashboard";
 import Testimonials from "./Dashboard/Testimonials";
 import Transactions from "./Dashboard/Transactions";
 import Users from "./Dashboard/Users";
+import Customers from "./Dashboard/Customers";
+import Drivers from "./Dashboard/Drivers";
 import Settings from "./Dashboard/Settings";
+
 
 function App() {
   return (
@@ -37,7 +40,9 @@ function App() {
             <Route path="/Services" element={<Services />} />
             <Route path="/Testimonials" element={<Testimonials />} />
             <Route path="/Transactions" element={<Transactions />} />
-            <Route path="/Users" element={<Users />} />
+            <Route exact path="/Layout/Users" element={<Users />} />
+          <Route path="/Users/Drivers" element={<Drivers />} />
+          <Route path="/Users/Customers" element={<Customers/>} />
             <Route path="/Settings" element={<Settings />} />
           </Route>
         </Routes>
